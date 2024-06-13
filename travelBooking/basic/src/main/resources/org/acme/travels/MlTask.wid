@@ -1,0 +1,22 @@
+[
+    [
+        "name" : "MlTask",
+        "displayName" : "Ml Task",
+        "icon" : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAALDSURBVDhPfVNdSFNhGH7O2Zz/fzOTmSWVSUSRFxleVUoUQWhGXXQT2EV4If5cZGRQF+tCSiUIIqI/hDILbURia6OVFqWZECOdjQKptZoyY0zdds753r5zznRC0nNxON/7fe/zPe/7Pa9AHFgVhPAikJYsQBTjoVXwD4Hvt4xeOzDuJZhSBVxtEpGVrjOE5yMIBsNYV2iGwaDHVhAw2F8z3HtCKNshoKpCxAYLUGAWQYzQ0vYQdqcbUGRs2VqER3frkZJi4kLjcA1JVNcYpQmvEo/okGWZqqovU0WllUbGvtHElJ+Kt5+h6e+z2r5RvXtmRkE/v/l8swGbN4po7xqAzxdEUrIRQ8MemNdk442jTZM9OfUTYpIBuTnpmm6tkJcOQvlOkScbcM7ahx7bGLJyMsBIwNGactj7W7RkRWE4WX8bRw6VITMjRSMAUxh1WiWa8RMNOsd5P46Ttd1GwbmwJnEJ8/MROljbQfurr5AsyfEokRiLErLTBOTmAebsTDS2HIbrlQe2gQ+IRIDZoN7jrusO/AqEMNjH1RgNCC0QV8g3ohGFBnsVCodYnFOH38/I9TrR0IbWB9R64bH2HwgyOnUpRuEFhUSTSYRlPSDFtIs0fPEwPLURSkuAW90u/AktID8vAyHVWRw/AgzRqIBU1WQQgKJNgBwn8LgV3L/JsG8vobBQxJ2eEVy74UT/wDiKi8zaGedbhl2l/AVEnqxKYoyRFCXyuiXqaJVp8lOiSaebu3mlx+jsRVW+TJ6vCp1oipI/oJ9ZNtJiWKHOBomGn0l8lah99KNXex0VU9xkdY0xcgzFtLWKZSurdv38juH9cwZLiYBtu0XkFvA6+TzMBYEXDhljbobaGhGVeww8g8tXv0sES5gLKBh1EnzTAiKSAIlPJTMSLMVA1QEBa/NV7+nJKv47zhH+1upmKvfJyqQEgL+6S9oBWc/0aAAAAABJRU5ErkJggg==",
+        "category" : "Custom task",
+        "documentation" : "ML task",
+        "parameters" : [         
+            "BaseURL" : new StringDataType(),
+            "TenantId" : new StringDataType(),
+            "Username" : new StringDataType(),
+            "Password" : new StringDataType(),
+            "ProcessName" : new StringDataType(),
+            "WaitSeconds" : new IntegerDataType(),
+            "Payload" : new StringDataType()
+        ],
+        "results" : [
+            "Status" : new BooleanDataType(),
+            "ResponsePayload" : new StringDataType()
+        ]
+    ]
+]

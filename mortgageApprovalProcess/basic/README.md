@@ -2,89 +2,36 @@
 
 ## Description
 
-The system calls an RPA bot that checks the desintation in a travel website. If safe, it books hotels and flights. If not safe the travel booking is halted.
+The system calls an ML service that approves a mortgage.  If approved, it runs DMN to apply incentive offers.
 
-## Activities to perform
 
-* Create project using Quarkus Maven plugin with following extensions
-  * Kogito
-  * OpenApi
-* Import project into Eclipse IDE - requires BPMN modeller plugin installed
-* Create data model
-  * Traveller
-  * Hotel
-  * Flight
-  * Address
-  * Trip
-* Create service classes 
-  * BannedCountryCheck 
-  * HotelBookingService
-  * FlightBookingService
-* Create processes
-  * Public business process to deal with complete travel request
-  * Private business process to deal with hotel booking
-  * Private business process to deal with flight booking
-* Create test cases for processes
-* Create UI components
-* Add metrics support for processes and decisions
-* Create dashboard based on metrics
 
 ## Data model
 
-IBM Travel Agency booking system will be based on following data model
+IBM Mortgate Approve Agency booking system will be based on following data model
 
-### Traveller
+### Applicant
 
-A person who requests a new travel
+Applicant
 
-### Trip
+### MortgageApplication
+ Details of mortgage
 
-Place/Location where the traveller wants to go and dates
+### MortgageOffer
 
-### Flight
-
-Flight that has been booked for the traveller to take him/her to the destination
-
-### Hotel
-
-Place/Location where the traveller will stay during his/her travel
-
-### Address
-
-Location that is associated with either traveller or hotel
+Mortgage Offer containing incentives
 
 <p align="center"><img width=75%  src="docs/images/datamodel.png"></p>
 
-## RPA Bot
+##ML service
 
-The RPA bot checks the desintation in the travel.state.gov website.    The bot takes as input the desination, and the output is the travel advisory with a status of true meaning it is ok to travel, and false meaning it is not.
+The ML service checks the mortgage details and applys a approve boolean
 
 <p align="center"><img width="100%" src="docs/images/GovernmentAdvisoryWebSite.png"></p>
 
 ## Business logic
 
-Business logic will be based on business processes
-
-Public process that will be responsible for orchestrating complete travel request
-
-<p align="center"><img width=100% src="docs/images/travels-process.png"></p>
-
-Private process that will be responsible for booking a hotel.
-
-<p align="center"><img width=50% src="docs/images/book-hotel-process.png"></p>
-
-Private process that will be responsible for booking a flight.
-
-<p align="center"><img width=50% src="docs/images/book-flight-process.png"></p>
-
-## Services
-
-There will be services implemented to carry on the hotel and flight booking. Implementation will be a CDI beans that will have hard coded logic to return a booked flight or hotel.
-
-* org.acme.travels.service.HotelBookingService
-* org.acme.travels.service.FlightBookingService
-
-## Try out the complete service
+Business logic will be based on DMN to apply simple incentive offers
 
 ### Installing and Running
 

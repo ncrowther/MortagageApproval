@@ -22,7 +22,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.acme.travels.Trip;
+import org.acme.travels.MortgageApplication;
 import org.junit.jupiter.api.Test;
 import org.kie.kogito.Model;
 import org.kie.kogito.process.Process;
@@ -47,7 +47,7 @@ public class MlRequestTest {
 
         Model m = mortgageEligibilityProcess.createModel();
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("trip", new Trip("Moscow", "Russian Federation", new Date(), new Date()));
+        parameters.put("mortgageapplication", new MortgageApplication("Moscow", "Russian Federation", new Date(), new Date()));
 
         m.fromMap(parameters);
 
@@ -57,8 +57,8 @@ public class MlRequestTest {
 
         Model result = (Model) processInstance.variables();
         // assertEquals(2, result.toMap().size());
-        Trip trip = (Trip) result.toMap().get("trip");
-        assertNotNull(trip);
-        assertEquals(true, trip.isBanned());
+        MortgageApplication mortgageapplication = (MortgageApplication) result.toMap().get("mortgageapplication");
+        assertNotNull(mortgageapplication);
+        assertEquals(true, mortgageapplication.isBanned());
     }
 }

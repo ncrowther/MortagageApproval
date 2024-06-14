@@ -17,7 +17,7 @@ package org.acme.travels;
 
 import java.util.Date;
 
-public class Trip {
+public class MortgageApplication {
 
     private String city;
     private String country;
@@ -27,11 +27,11 @@ public class Trip {
     private boolean banned;
     private String travelAdvisory;
 
-    public Trip() {
+    public MortgageApplication() {
 
     }
 
-    public Trip(String city, String country, Date begin, Date end) {
+    public MortgageApplication(String city, String country, Date begin, Date end) {
         super();
         this.city = city;
         this.country = country;
@@ -99,7 +99,7 @@ public class Trip {
 
     @Override
     public String toString() {
-        return "Trip [begin=" + begin + ", Banned=" + banned + ", city=" + city + ", country=" + country
+        return "MortgageApplication [begin=" + begin + ", Banned=" + banned + ", city=" + city + ", country=" + country
                 + ", end=" + end + ", travelAdvisory=" + travelAdvisory + ", visaRequired=" + visaRequired + "]";
     }
 

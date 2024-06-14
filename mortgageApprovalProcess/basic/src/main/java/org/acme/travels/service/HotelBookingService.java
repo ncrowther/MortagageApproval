@@ -19,12 +19,12 @@ import javax.enterprise.context.ApplicationScoped;
 
 import org.acme.travels.Address;
 import org.acme.travels.Hotel;
-import org.acme.travels.Trip;
+import org.acme.travels.MortgageApplication;
 
 @ApplicationScoped
 public class HotelBookingService {
 
-    public Hotel bookHotel(Trip trip) {
-        return new Hotel("Hotel Richmond", new Address("street", trip.getCity(), "12345", trip.getCountry()), "09876543", "XX-012345");
+    public Hotel bookHotel(MortgageApplication mortgageapplication) {
+        return new Hotel("Hotel Richmond", new Address("street", mortgageapplication.getCity(), "12345", mortgageapplication.getCountry()), "09876543", "XX-012345");
     }
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>IBM Travel Agency</title>
+    <title>Mortgage Application</title>
     
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -13,31 +13,28 @@
 <body>
 <div class="container" role="main">
     <div class="jumbotron">
-        <img src="travel41.jpg" alt="Travel" width="1000" height="240">
-         <!-- https://www.freepik.com/free-vector/time-travel-vector-flyer-with-white-copy-space-sky-with-airplane_17128684.htm#query=travel&position=5&from_view=keyword">Image by user15245033</a> on Freepik -->        
+        <img src="mortgage.png" alt="Mortgage" width="200" height="200">
+        <h1>Mortgage Application</h1>
         <br><br>
-        <p>Powered by IBM RPA and PAM</p>
+        <p>Powered by IBM BAMOE and Watsonx.AI</p>
        
     </div>
     <div class="page-header">
         <div class="row">
             <div class="col-md-12">
-                <h1>Travels</h1>
+                <h1>Mortgage</h1>
                 <button class="pull-right btn btn-primary product-add" data-action="add" data-toggle="modal"
                         data-target="#productModal">
-                    <span class="glyphicon glyphicon-plus"></span> Plan new trip
+                    <span class="glyphicon glyphicon-plus"></span> Apply for Mortgage
                 </button>
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Traveller name</th>
-                        <th>Destination</th>
-                        <th>Dates</th>
-                        <th>Banned</th>     
-                        <th>Advisory</th>                   
-                        <th>Hotel</th>
-                        <th>Flight</th>
-                        <th>Actions</th>
+                        <th>Applicant name</th>
+                        <th>Loan</th>
+                        <th>Term</th>
+                        <th>Approved</th>     
+                        <th>Incentive</th>                   
                     </tr>
                     </thead>
                     <tbody id="content">
@@ -57,10 +54,10 @@
             }
         });
         $( function() {
-            $( "#tripBegin" ).datepicker({
+            $( "#mortgageapplicationBegin" ).datepicker({
                 dateFormat: "yy-mm-dd"
             });
-            $( "#tripEnd" ).datepicker({
+            $( "#mortgageapplicationEnd" ).datepicker({
                 dateFormat: "yy-mm-dd"
             });
           } );
@@ -69,7 +66,7 @@
     });
 
     function create(travelRequest) {
-        $.post("/travels", travelRequest, function () {
+        $.post("/mortgage", travelRequest, function () {
             load();
         }, "json");
     }
@@ -77,29 +74,27 @@
     function remove(id) {
         $.ajax({
             method: "DELETE",
-            url: "/travels/" + id
+            url: "/mortgage/" + id
         }).done(function () {
             load();
         });
     }
 
     function completeTask(id, taskName, taskId) {
-        $.post("/travels/" + id + "/" + taskName + "/" + taskId, JSON.stringify({}), function () {
+        $.post("/mortgage/" + id + "/" + taskName + "/" + taskId, JSON.stringify({}), function () {
             load();
         }, "json");
     }
 
     function load() {
         $("#content").children().remove();
-        $.getJSON("/travels", function (data) {
+        $.getJSON("/mortgage", function (data) {
             $.each(data, function (key, val) {
                 $("<tr><td>" + val.traveller.lastName + ", " + val.traveller.firstName + "</td>" +
-                "<td>" + val.trip.country + ", " + val.trip.city + "</td>" +
-                "<td>" + new Date(val.trip.begin).toLocaleDateString() + " - " + new Date(val.trip.end).toLocaleDateString() + "</td>" +
-                "<td>" + (val.trip.banned ? 'Yes' : 'No') + "</td>" +      
-                "<td>" + val.trip.travelAdvisory + "</td>" +            
-                "<td>" + (val.hotel != null ? val.hotel.name : '') + "</td>" +
-                "<td>" + (val.flight != null ? val.flight.flightNumber : '')  + "</td>" +
+                "<td>" + val.mortgageapplication.country + ", " + val.mortgageapplication.city + "</td>" +
+                "<td>" + new Date(val.mortgageapplication.begin).toLocaleDateString() + " - " + new Date(val.mortgageapplication.end).toLocaleDateString() + "</td>" +
+                "<td>" + (val.mortgageapplication.banned ? 'Yes' : 'No') + "</td>" +      
+                "<td>" + val.mortgageapplication.travelAdvisory + "</td>" +            
                         "<td>" +
                         "<button class='btn btn-primary btn-sm' " +
                         "data-toggle='modal' " +
@@ -108,11 +103,11 @@
                         "data-lastname='" + val.traveller.lastName + "' " +
                         "data-email='" + val.traveller.email + "' " +
                         "data-nationality='" + val.traveller.nationality + "' " +
-                        "data-country='" + val.trip.country + "' " +
-                        "data-city='" + val.trip.city + "' " +
-                        "data-travelAdvisory='" + val.trip.travelAdvisory + "' " +
-                        "data-begin='" + new Date(val.trip.begin).toLocaleDateString() + "' " +
-                        "data-end='" + new Date(val.trip.end).toLocaleDateString() + "' " +                     
+                        "data-country='" + val.mortgageapplication.country + "' " +
+                        "data-city='" + val.mortgageapplication.city + "' " +
+                        "data-travelAdvisory='" + val.mortgageapplication.travelAdvisory + "' " +
+                        "data-begin='" + new Date(val.mortgageapplication.begin).toLocaleDateString() + "' " +
+                        "data-end='" + new Date(val.mortgageapplication.end).toLocaleDateString() + "' " +                     
                         "data-hotelname='" + (val.hotel != null ? val.hotel.name : "") + "' " +
                         "data-address='" + (val.hotel != null ? val.hotel.address.street : "") + "' " +
                         "data-bookingnumber='" + (val.hotel != null ? val.hotel.bookingNumber : "") + "' " +
@@ -149,7 +144,7 @@
             var productAction = $("#productAction");
             productAction.unbind();
             var modal = $(this);
-            modal.find('.modal-title').text("Plan new trip");
+            modal.find('.modal-title').text("Apply for Mortgage");
             modal.find('#firstName').val("");
             modal.find('#lastName').val("");
             modal.find('#email').val("");
@@ -162,16 +157,16 @@
 
             modal.find('#destinationCountry').val("");
             modal.find('#destinationCity').val("");
-            modal.find('#tripBegin').val("");
-            modal.find('#tripEnd').val("");
+            modal.find('#mortgageapplicationBegin').val("");
+            modal.find('#mortgageapplicationEnd').val("");
             modal.find('#travelAdvisory').val("");
 
             productAction.click(function () {
 
                 var address = {street: $("#street").val(), city: $("#city").val(), Postcode: $("#postCode").val(), country: $("#country").val()};
                 var traveller = {firstName: $("#firstName").val(), lastName: $("#lastName").val(), email: $("#email").val(), nationality: $("#nationality").val(), address: address};
-                var trip = {country: $("#destinationCountry").val(), city: $("#destinationCity").val(), banned: $("#banned").val(), travelAdvisory: $("#travelAdvisory").val(), begin: $("#tripBegin").val() + 'T00:00:00.000+02:00', end: $("#tripEnd").val() + 'T00:00:00.000+02:00'};
-                var travelRequest = JSON.stringify({traveller: traveller, trip: trip});
+                var mortgageapplication = {country: $("#destinationCountry").val(), city: $("#destinationCity").val(), banned: $("#banned").val(), travelAdvisory: $("#travelAdvisory").val(), begin: $("#mortgageapplicationBegin").val() + 'T00:00:00.000+02:00', end: $("#mortgageapplicationEnd").val() + 'T00:00:00.000+02:00'};
+                var travelRequest = JSON.stringify({traveller: traveller, mortgageapplication: mortgageapplication});
 
                 create(travelRequest);
                 $('#productModal').modal('toggle');
@@ -191,8 +186,8 @@
             modal.find('#nationality').val(button.data("nationality"));
             modal.find('#destinationCountry').val(button.data("country"));
             modal.find('#destinationCity').val(button.data("city"));
-            modal.find('#tripBegin').val(button.data("begin"));
-            modal.find('#tripEnd').val(button.data("end"));
+            modal.find('#mortgageapplicationBegin').val(button.data("begin"));
+            modal.find('#mortgageapplicationEnd').val(button.data("end"));
             modal.find('#travelAdisory').val(button.data("travelAdvisory"));
 
             modal.find('#hotelname').val(button.data("hotelname"));
@@ -211,12 +206,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                <h4 class="modal-title" id="productModalTitle">Plan new trip</h4>
+                <h4 class="modal-title" id="productModalTitle">Apply for Mortgage</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                         <div class="row">
-                            <h3>Traveller</h3>
+                            <h3>Applicant</h3>
                             <div class="col-md-6 col-sm-6 col-xs-6">
                                 <div class="form-group">
                                     <label for="firstName">First Name</label> <input type="text"
@@ -267,8 +262,8 @@
                                 </div>
                             </div>
 
-                            <h3>Trip</h3>
                             <div class="col-md-12 col-sm-12 col-xs-12">
+                                <h3>Mortgage</h3>
                                 <div class="form-group">
                                     <label for="destinationCountry">Country</label>
                                     <br>
@@ -289,19 +284,19 @@
                                         class="form-control" id="destinationCity" name="destinationCity" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="tripBegin">Begin at</label> <input type="text"
-                                        class="form-control" id="tripBegin" name="tripBegin" required>
+                                    <label for="mortgageapplicationBegin">Begin at</label> <input type="text"
+                                        class="form-control" id="mortgageapplicationBegin" name="mortgageapplicationBegin" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="tripEnd">End at</label> <input
-                                        type="text" class="form-control" id="tripEnd"
-                                        name="tripEnd" required>
+                                    <label for="mortgageapplicationEnd">End at</label> <input
+                                        type="text" class="form-control" id="mortgageapplicationEnd"
+                                        name="mortgageapplicationEnd" required>
                                 </div>                                                           
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default"
                                     data-dismiss="modal">Cancel</button>
-                                <button type="button" id="productAction" class="btn btn-primary">Book your trip</button>
+                                <button type="button" id="productAction" class="btn btn-primary">Apply</button>
                             </div>
                         </div>
                     </div>
@@ -322,7 +317,7 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-6 col-xs-6">
                                 <div class="form-group">
-                                    <h3>Traveller</h3>
+                                    <h3>Applicant</h3>
                                 </div>
                                 <div class="form-group">
                                     <label for="firstName">First Name</label> <input type="text"
@@ -346,7 +341,7 @@
 
                             <div class="col-md-6 col-sm-6 col-xs-6">
                                 <div class="form-group">
-                                    <h3>Trip</h3>
+                                    <h3>Mortgage</h3>
                                 </div>
                                 <div class="form-group">
                                     <label for="destinationCountry">Country</label> <input type="text"
@@ -357,13 +352,13 @@
                                         class="form-control" id="destinationCity" name="destinationCity" readonly>
                                 </div>
                                 <div class="form-group">
-                                    <label for="tripBegin">Begin at</label> <input type="text"
-                                        class="form-control" id="tripBegin" name="tripBegin" readonly>
+                                    <label for="mortgageapplicationBegin">Begin at</label> <input type="text"
+                                        class="form-control" id="mortgageapplicationBegin" name="mortgageapplicationBegin" readonly>
                                 </div>
                                 <div class="form-group">
-                                    <label for="tripEnd">End at</label> <input
-                                        type="text" class="form-control" id="tripEnd"
-                                        name="tripEnd" readonly>
+                                    <label for="mortgageapplicationEnd">End at</label> <input
+                                        type="text" class="form-control" id="mortgageapplicationEnd"
+                                        name="mortgageapplicationEnd" readonly>
                                 </div>                                
                             </div>
                         </div>

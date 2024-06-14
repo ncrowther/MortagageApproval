@@ -18,12 +18,12 @@ package org.acme.travels.service;
 import javax.enterprise.context.ApplicationScoped;
 
 import org.acme.travels.Flight;
-import org.acme.travels.Trip;
+import org.acme.travels.MortgageApplication;
 
 @ApplicationScoped
 public class FlightBookingService {
 
-    public Flight bookFlight(Trip trip) {
-        return new Flight("MX555", trip.getBegin(), trip.getEnd());
+    public Flight bookFlight(MortgageApplication application) {
+        return new Flight("MX555", application.getBegin(), application.getEnd());
     }
 }

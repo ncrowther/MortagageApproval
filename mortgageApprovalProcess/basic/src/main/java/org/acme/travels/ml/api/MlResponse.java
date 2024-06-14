@@ -16,28 +16,28 @@
 package org.acme.travels.ml.api;
 
 public class MlResponse {
-    private Boolean responseStatus;
-    private String responsePayload;
+    private Integer responseCode;
+    private Boolean approved;
 
-    public MlResponse(String response) {
-        this.responseStatus = true;
-        this.responsePayload = response;
+    public MlResponse(Integer responseCode, Boolean approved) {
+        this.responseCode = responseCode;
+        this.approved = approved;
     }
 
-    public Boolean getResponseStatus() {
-        return responseStatus;
+    public Integer getResponseCode() {
+        return responseCode;
     }
 
-    public String getResponsePayload() {
-        return responsePayload;
+    public Boolean getApproved() {
+        return approved;
     }
 
     @Override
     public String toString() {
-        return "MlResponse [responsePayload=" + responsePayload + ", responseStatus=" + responseStatus + "]";
+        return "MlResponse [approved=" + approved + ", responseCode=" + responseCode + "]";
     }
 
-    public static void main(String args[]) {
+    public static void main(Integer args[]) {
 
     }
 

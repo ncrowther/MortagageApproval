@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.acme.travels.ml.api.MlApi;
+import org.acme.travels.ml.api.MlRequest;
 import org.acme.travels.ml.api.MlResponse;
 import org.acme.travels.ml.api.PasswordEncryption;
 import org.kie.api.runtime.process.ProcessWorkItemHandlerException;
@@ -28,15 +29,13 @@ import org.kie.kogito.internal.process.runtime.KogitoWorkItemManager;
 
 public class MlTaskHandler implements KogitoWorkItemHandler {
 
-    static final String COMPLETED_STATUS = "done";
-
     private String baseUrl;
     private String tenantId;
     private String username;
     private String password;
     private String processName;
     private Integer waitSeconds;
-    private String payload;
+    private MlRequest payload;
 
     @Override
     public void executeWorkItem(KogitoWorkItem workItem, KogitoWorkItemManager manager) {
@@ -47,9 +46,8 @@ public class MlTaskHandler implements KogitoWorkItemHandler {
 
         Map<String, Object> results = new HashMap<String, Object>();
 
-        boolean callSuccess = result.getResponseStatus();
-        results.put("Status", callSuccess);
-        results.put("ResponsePayload", result.getResponsePayload());
+        results.put("ResponseCode", result.getResponseCode());
+        results.put("Approved", result.getApproved());
 
         // Don’t forget to finish the work item otherwise the process
         // will be active infinitely and never will pass the flow
@@ -68,7 +66,7 @@ public class MlTaskHandler implements KogitoWorkItemHandler {
             String password,
             String processName,
             int waitSeconds,
-            String payload) {
+            MlRequest payload) {
 
         MlResponse result = null;
 
@@ -81,8 +79,8 @@ public class MlTaskHandler implements KogitoWorkItemHandler {
                     payload,
                     waitSeconds);
 
-            Boolean status = result.getResponseStatus();
-            System.out.println("success: " + status);
+            Integer status = result.getResponseCode();
+            System.out.println("ResponseCode: " + status);
 
         } catch (Exception e) {
             handleError(e.toString());
@@ -148,7 +146,7 @@ public class MlTaskHandler implements KogitoWorkItemHandler {
             handleError("WaitSeconds null");
         }
 
-        this.payload = (String) workItem.getParameter("Payload");
+        this.payload = (MlRequest) workItem.getParameter("Payload");
         if (this.payload == null || this.processName.equals("")) {
             System.out.println("ERROR: payload is null or empty");
             handleError("Payload empty");

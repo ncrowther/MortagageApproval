@@ -21,24 +21,28 @@ public class MortgageApplication {
 
     private String city;
     private String country;
+    private Integer loan;
+    private Integer salary;
+    private Integer propertyValue;
     private Date begin;
     private Date end;
-    private boolean visaRequired;
-    private boolean banned;
-    private String travelAdvisory;
+    private boolean approved;
+    private String incentive;
 
     public MortgageApplication() {
-
     }
 
-    public MortgageApplication(String city, String country, Date begin, Date end) {
+    public MortgageApplication(Integer loan, Integer salary, Integer propertyValue, String city, String country, Date begin, Date end) {
         super();
+        this.loan = loan;
+        this.salary = salary;
+        this.propertyValue = propertyValue;
         this.city = city;
         this.country = country;
         this.begin = begin;
         this.end = end;
-        this.banned = false;
-        this.travelAdvisory = "No advisory";
+        this.approved = false;
+        this.incentive = "No incentive";
     }
 
     public String getCity() {
@@ -73,34 +77,61 @@ public class MortgageApplication {
         this.end = end;
     }
 
-    public boolean isVisaRequired() {
-        return visaRequired;
+    public String getIncentive() {
+        return incentive;
     }
 
-    public void setVisaRequired(boolean visaRequired) {
-        this.visaRequired = visaRequired;
+    public void setIncentive(String incentive) {
+        this.incentive = incentive;
     }
 
-    public String getTravelAdvisory() {
-        return travelAdvisory;
+    public boolean isApproved() {
+        return approved;
     }
 
-    public void setTravelAdvisory(String travelAdvisory) {
-        this.travelAdvisory = travelAdvisory;
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
 
-    public boolean isBanned() {
-        return banned;
+    public Integer getSalary() {
+        return salary;
     }
 
-    public void setBanned(boolean banned) {
-        this.banned = banned;
+    public void setSalary(Integer salary) {
+        this.salary = salary;
+    }
+
+    public Integer getLoan() {
+        return loan;
+    }
+
+    public void setLoan(Integer loan) {
+        this.loan = loan;
+    }
+
+    public Integer getPropertyValue() {
+        return propertyValue;
+    }
+
+    public void setPropertyValue(Integer propertyValue) {
+        this.propertyValue = propertyValue;
     }
 
     @Override
     public String toString() {
-        return "MortgageApplication [begin=" + begin + ", Banned=" + banned + ", city=" + city + ", country=" + country
-                + ", end=" + end + ", travelAdvisory=" + travelAdvisory + ", visaRequired=" + visaRequired + "]";
+        StringBuilder sb = new StringBuilder();
+        sb.append("MortgageApplication{");
+        sb.append("city=").append(city);
+        sb.append(", country=").append(country);
+        sb.append(", loan=").append(loan);
+        sb.append(", salary=").append(salary);
+        sb.append(", propertyValue=").append(propertyValue);
+        sb.append(", begin=").append(begin);
+        sb.append(", end=").append(end);
+        sb.append(", approved=").append(approved);
+        sb.append(", incentive=").append(incentive);
+        sb.append('}');
+        return sb.toString();
     }
 
 }

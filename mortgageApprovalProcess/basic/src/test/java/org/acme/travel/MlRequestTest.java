@@ -41,13 +41,13 @@ public class MlRequestTest {
     Process<? extends Model> mortgageEligibilityProcess;
 
     @Test
-    public void testMortgageEligibility() {
+    public void testMortgageNotEligible() {
 
         assertNotNull(mortgageEligibilityProcess);
 
         Model m = mortgageEligibilityProcess.createModel();
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("mortgageapplication", new MortgageApplication("Moscow", "Russian Federation", new Date(), new Date()));
+        parameters.put("mortgageapplication", new MortgageApplication(1000, 200000, 400000, "Reading", "UK", new Date(), new Date()));
 
         m.fromMap(parameters);
 
@@ -59,6 +59,28 @@ public class MlRequestTest {
         // assertEquals(2, result.toMap().size());
         MortgageApplication mortgageapplication = (MortgageApplication) result.toMap().get("mortgageapplication");
         assertNotNull(mortgageapplication);
-        assertEquals(true, mortgageapplication.isBanned());
+        assertEquals(false, mortgageapplication.isApproved());
+    }
+
+    @Test
+    public void testMortgageEligible() {
+
+        assertNotNull(mortgageEligibilityProcess);
+
+        Model m = mortgageEligibilityProcess.createModel();
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("mortgageapplication", new MortgageApplication(100000, 200000, 400000, "Reading", "UK", new Date(), new Date()));
+
+        m.fromMap(parameters);
+
+        ProcessInstance<?> processInstance = mortgageEligibilityProcess.createInstance(m);
+        processInstance.start();
+        assertEquals(org.kie.api.runtime.process.ProcessInstance.STATE_COMPLETED, processInstance.status());
+
+        Model result = (Model) processInstance.variables();
+        // assertEquals(2, result.toMap().size());
+        MortgageApplication mortgageapplication = (MortgageApplication) result.toMap().get("mortgageapplication");
+        assertNotNull(mortgageapplication);
+        assertEquals(true, mortgageapplication.isApproved());
     }
 }

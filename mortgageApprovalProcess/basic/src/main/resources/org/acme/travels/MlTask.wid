@@ -15,8 +15,8 @@
             "Payload" : new StringDataType()
         ],
         "results" : [
-            "Status" : new BooleanDataType(),
             "ResponsePayload" : new StringDataType()
+            "Approved" : new BooleanDataType(),
         ]
     ]
 ]

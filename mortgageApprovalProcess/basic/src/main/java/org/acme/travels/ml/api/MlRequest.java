@@ -15,44 +15,55 @@
  */
 package org.acme.travels.ml.api;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
-
 public class MlRequest {
-    Map<String, Object> parameters = new HashMap<String, Object>();
 
-    public String getParameters() {
+    private Integer salary = 0;
+    private Integer loan = 0;
+    private Integer propertyValue = 0;
 
-        StringBuilder payload = new StringBuilder("{ \"payload\":{");
-
-        Iterator<Entry<String, Object>> it = parameters.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<String, Object> entry = it.next();
-            String key = entry.getKey();
-            Object value = entry.getValue();
-
-            payload.append("\"" + key + "\":\"" + value + "\"");
-
-            if (it.hasNext()) {
-                payload.append(", ");
-            }
-        }
-
-        payload.append("}}");
-        return payload.toString();
+    public Integer getLoan() {
+        return loan;
     }
 
-    public void setParameter(String name, Object value) {
-        this.parameters.put(name, value);
+    public void setLoan(Integer loan) {
+        this.loan = loan;
+    }
+
+    public Integer getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Integer salary) {
+        this.salary = salary;
+    }
+
+    public Integer getPropertyValue() {
+        return propertyValue;
+    }
+
+    public void setPropertyValue(Integer propertyValue) {
+        this.propertyValue = propertyValue;
     }
 
     public static void main(String args[]) {
 
         MlRequest request = new MlRequest();
-        request.setParameter("in_destination", "Russian Federation");
+        request.setSalary(10000);
+        request.setLoan(10000);
+        request.setPropertyValue(10000);
 
-        System.out.println("Request: " + request.getParameters());
+        System.out.println("Request: " + request);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MlRequest{");
+        sb.append("salary=").append(salary);
+        sb.append(", loan=").append(loan);
+        sb.append(", propertyValue=").append(propertyValue);
+        sb.append('}');
+        return sb.toString();
+    }
+
 }

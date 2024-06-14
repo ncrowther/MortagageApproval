@@ -40,6 +40,7 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import org.acme.travels.ml.json.JsonUtils;
 import org.apache.commons.codec.binary.Base64;
 
 public class MlApi {
@@ -86,7 +87,7 @@ public class MlApi {
     }
 
     public static MlResponse invokeMlModelAndWait(String baseUrl, String tenantId, String username, String password,
-            String processName, String payload, Integer waitSeconds)
+            String processName, MlRequest payload, Integer waitSeconds)
             throws MlApiException, InterruptedException {
 
         final int RETRY_COUNT = 10;
@@ -105,23 +106,25 @@ public class MlApi {
 
         try {
 
-            String income = "10000";
-            String loanAmount = "10000";
-            String creditScore = "1000";
-            String propertyValue = "500000";
+            String income = payload.getSalary().toString();
+            String loanAmount = payload.getLoan().toString();
+            String propertyValue = payload.getPropertyValue().toString();
+            String creditScore = "2000";
 
             response = invokeMlModel(baseUrl, tenantId, income, loanAmount, creditScore, propertyValue);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        MlResponse mlResponse = new MlResponse(response);
+        //if (response.code != 200) {
+        //   mlResponse = new MlResponse(false, false);
+        //}
+
+        Integer responseCode = 200;
+        Boolean approved = JsonUtils.getBoolean("approved", response);
+        MlResponse mlResponse = new MlResponse(responseCode, approved);
 
         System.out.println("mlResponse: " + mlResponse);
-
-        if (mlResponse == null) {
-            throw new MlApiException("No response after " + RETRY_COUNT + " retries");
-        }
 
         return mlResponse;
     }
@@ -275,8 +278,6 @@ public class MlApi {
 
         String response = doRest("POST", mlUrl, payload, headerMap, null, null);
 
-        //mlResponse = JsonUtils.getBoolean(response, "approved");
-
         System.out.println(response);
 
         return response;
@@ -291,16 +292,16 @@ public class MlApi {
         String loanAmount = "200000";
         String creditScore = "2000";
         String propertyValue = "400000";
-        String payload = "{\"test\": true}";
+        MlRequest mlRequest = new MlRequest();
         final int WAIT_SECS = 30;
 
         try {
 
-            MlResponse result = invokeMlModelAndWait(baseUrl, apiKey, "", "", "", "", WAIT_SECS);
+            MlResponse result = invokeMlModelAndWait(baseUrl, apiKey, "", "", "", mlRequest, WAIT_SECS);
 
-            String responsePayload = result.getResponsePayload();
+            Boolean approved = result.getApproved();
 
-            System.out.println("approved:" + responsePayload);
+            System.out.println("approved:" + approved);
 
         } catch (Exception e) {
             e.printStackTrace();

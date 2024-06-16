@@ -20,11 +20,6 @@
       <dmn:requiredInput href="#_261133E4-E4BD-4581-BF06-04114712471D"/>
     </dmn:informationRequirement>
     <dmn:decisionTable id="_775E2C61-9D8C-4031-A56F-94EE482FE51E" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
-      <dmn:input id="_AFBC99B3-4349-48C2-A3FB-8776D6926C7B">
-        <dmn:inputExpression id="_B389C40C-69FA-4BBF-B10C-FBF2C2A75C49" typeRef="number">
-          <dmn:text>mortgage</dmn:text>
-        </dmn:inputExpression>
-      </dmn:input>
       <dmn:input id="_BAA95773-B10A-415B-BCC4-9F9398DE29CC">
         <dmn:inputExpression id="_B2DFE9F7-9A99-4D13-8C72-6CB31A787E4A" typeRef="number">
           <dmn:text>salary</dmn:text>
@@ -33,9 +28,6 @@
       <dmn:output id="_0147E193-3D01-42CE-A9BB-07CAF1EB15F1"/>
       <dmn:annotation name="annotation-1"/>
       <dmn:rule id="_CCA7ABE6-B869-4583-B852-D70B66AB218B">
-        <dmn:inputEntry id="_C63AA860-7403-4A35-9D29-1FDE0419F38F">
-          <dmn:text>-</dmn:text>
-        </dmn:inputEntry>
         <dmn:inputEntry id="_1FA5440C-845A-40B4-B450-DC97938A8A95">
           <dmn:text>-</dmn:text>
         </dmn:inputEntry>
@@ -54,7 +46,6 @@
         <kie:ComponentsWidthsExtension>
           <kie:ComponentWidths dmnElementRef="_775E2C61-9D8C-4031-A56F-94EE482FE51E">
             <kie:width>50</kie:width>
-            <kie:width>100</kie:width>
             <kie:width>100</kie:width>
             <kie:width>100</kie:width>
             <kie:width>100</kie:width>
@@ -85,16 +76,16 @@
           <dmndi:StrokeColor red="0" green="0" blue="0"/>
           <dmndi:FontColor red="0" green="0" blue="0"/>
         </dmndi:DMNStyle>
-        <dc:Bounds x="444" y="262" width="100" height="50"/>
+        <dc:Bounds x="464" y="276" width="100" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="dmnedge-drg-_ADF5BF1A-355D-4596-89F5-177ED3B2B83A" dmnElementRef="_ADF5BF1A-355D-4596-89F5-177ED3B2B83A">
         <di:waypoint x="637" y="152"/>
-        <di:waypoint x="494" y="262"/>
+        <di:waypoint x="514" y="276"/>
       </dmndi:DMNEdge>
       <dmndi:DMNEdge id="dmnedge-drg-_B4F2AD8F-018F-4F6D-BA81-1C83FBB218B1" dmnElementRef="_B4F2AD8F-018F-4F6D-BA81-1C83FBB218B1">
         <di:waypoint x="389" y="140"/>
-        <di:waypoint x="494" y="262"/>
+        <di:waypoint x="514" y="276"/>
       </dmndi:DMNEdge>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>

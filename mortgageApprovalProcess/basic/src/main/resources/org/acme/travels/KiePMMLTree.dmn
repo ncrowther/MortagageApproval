@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_FAA4232D-9D61-4089-BB05-5F5D7C1AECE1" xmlns:included1="test_tree.pmml" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_109A7FAC-1FC8-41E2-AD6A-B71C6DD37FDE" name="TestTreeDMN" expressionLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_FAA4232D-9D61-4089-BB05-5F5D7C1AECE1">
+  <dmn:extensionElements/>
+  <dmn:import id="_5F0B85AB-FD09-460C-AEB8-9AD031B5CD8B" name="test_tree" namespace="test_tree" locationURI="file:///E:/IBAMOE/kogito-examples-main/kogito-examples-main/kogito-quarkus-examples/dmn-pmml-quarkus-example/src/main/resources/test_tree.pmml" importType="http://www.dmg.org/PMML-4_2"/>
+  <dmn:inputData id="_38768C91-68B3-46E3-8F0A-0A34B293EF34" name="mortgage">
+    <dmn:extensionElements/>
+    <dmn:variable id="_9C968222-DB01-4CF8-82B9-56ECD745CFA8" name="mortgage" typeRef="number"/>
+  </dmn:inputData>
+  <dmn:inputData id="_261133E4-E4BD-4581-BF06-04114712471D" name="salary">
+    <dmn:extensionElements/>
+    <dmn:variable id="_34B5F3C0-1073-48CE-B36D-9BD81AAE8063" name="salary" typeRef="number"/>
+  </dmn:inputData>
+  <dmn:decision id="_4D386CBD-B7E9-43B7-BFE6-59D5254FB084" name="Decision">
+    <dmn:extensionElements/>
+    <dmn:variable id="_302B6A4E-12C9-4F7A-B34D-4A6CF4B4C3E8" name="Decision" typeRef="string"/>
+    <dmn:informationRequirement id="_ADF5BF1A-355D-4596-89F5-177ED3B2B83A">
+      <dmn:requiredInput href="#_38768C91-68B3-46E3-8F0A-0A34B293EF34"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_B4F2AD8F-018F-4F6D-BA81-1C83FBB218B1">
+      <dmn:requiredInput href="#_261133E4-E4BD-4581-BF06-04114712471D"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_775E2C61-9D8C-4031-A56F-94EE482FE51E" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_AFBC99B3-4349-48C2-A3FB-8776D6926C7B">
+        <dmn:inputExpression id="_B389C40C-69FA-4BBF-B10C-FBF2C2A75C49" typeRef="number">
+          <dmn:text>mortgage</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_BAA95773-B10A-415B-BCC4-9F9398DE29CC">
+        <dmn:inputExpression id="_B2DFE9F7-9A99-4D13-8C72-6CB31A787E4A" typeRef="number">
+          <dmn:text>salary</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_0147E193-3D01-42CE-A9BB-07CAF1EB15F1"/>
+      <dmn:annotation name="annotation-1"/>
+      <dmn:rule id="_CCA7ABE6-B869-4583-B852-D70B66AB218B">
+        <dmn:inputEntry id="_C63AA860-7403-4A35-9D29-1FDE0419F38F">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_1FA5440C-845A-40B4-B450-DC97938A8A95">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_F1247A6C-E18A-48CE-8EC6-E614AC554DA9">
+          <dmn:text>"Bonus"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_F6BEFAA6-D260-42F1-99A0-ABED9FCBA5EC" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_775E2C61-9D8C-4031-A56F-94EE482FE51E">
+            <kie:width>50</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-drg-_38768C91-68B3-46E3-8F0A-0A34B293EF34" dmnElementRef="_38768C91-68B3-46E3-8F0A-0A34B293EF34" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="587" y="127" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_261133E4-E4BD-4581-BF06-04114712471D" dmnElementRef="_261133E4-E4BD-4581-BF06-04114712471D" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="339" y="115" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_4D386CBD-B7E9-43B7-BFE6-59D5254FB084" dmnElementRef="_4D386CBD-B7E9-43B7-BFE6-59D5254FB084" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="444" y="262" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_ADF5BF1A-355D-4596-89F5-177ED3B2B83A" dmnElementRef="_ADF5BF1A-355D-4596-89F5-177ED3B2B83A">
+        <di:waypoint x="637" y="152"/>
+        <di:waypoint x="494" y="262"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_B4F2AD8F-018F-4F6D-BA81-1C83FBB218B1" dmnElementRef="_B4F2AD8F-018F-4F6D-BA81-1C83FBB218B1">
+        <di:waypoint x="389" y="140"/>
+        <di:waypoint x="494" y="262"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>

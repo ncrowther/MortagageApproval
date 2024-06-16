@@ -1,0 +1,53 @@
+<PMML version="4.2" xsi:schemaLocation="http://www.dmg.org/PMML-4_2 http://www.dmg.org/v4-2-1/pmml-4-2.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns="http://www.dmg.org/PMML-4_2">
+  <Header>
+    <Application name="Drools-PMML" version="7.0.0-SNAPSHOT" />
+  </Header>
+	
+  <DataDictionary numberOfFields="3">
+    <DataField name="salary" dataType="integer" optype="continuous" />
+    <DataField name="mortgage" dataType="integer" optype="continuous" />   
+    <DataField name="decision" dataType="string" optype="categorical"> 
+      <Value value="BronzeDiscount" />
+      <Value value="SilverDiscount" />
+      <Value value="GoldDiscount" />
+      <Value value="nothing" />     
+    </DataField>
+  </DataDictionary>
+  
+  <TreeModel modelName="DecisionTree" functionName="classification">
+    <MiningSchema>
+      <MiningField name="salary"  usageType="active" />
+      <MiningField name="mortgage"  usageType="active" />
+      <MiningField name="decision" usageType="predicted" />
+    </MiningSchema>
+    <Output>
+      <OutputField name="decision" targetField="decision" />
+    </Output>
+    
+    <Node score="nothing" id="1">
+      <True />
+      <Node score="BronzeDiscount" id="2">
+        <CompoundPredicate booleanOperator="and">
+          <SimplePredicate field="salary" operator="greaterThan" value="25000" />
+          <SimplePredicate field="mortgage" operator="lessOrEqual" value="200000" />
+        </CompoundPredicate>
+      </Node>
+      <Node score="SilverDiscount" id="3">
+        <CompoundPredicate booleanOperator="and">
+          <SimplePredicate field="mortgage" operator="greaterThan" value="500000" />
+          <SimplePredicate field="salary" operator="greaterThan" value="50000" />
+        </CompoundPredicate>
+      </Node>      
+      <Node score="GoldDiscount" id="4">
+        <CompoundPredicate booleanOperator="and">
+          <SimplePredicate field="mortgage" operator="greaterThan" value="1000000" />
+          <SimplePredicate field="salary" operator="greaterThan" value="90000" />
+        </CompoundPredicate>
+      </Node>
+      <Node score="nothing" id="5">
+        <True />
+      </Node>
+    </Node>
+  </TreeModel>
+</PMML>

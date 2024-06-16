@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_0mbDYA4HED2tvqhmVC3rpQ" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_5ej6MA4LED2pdoZYM4_xlQ" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
   <bpmn2:itemDefinition id="_travellerItem" structureRef="org.acme.travels.Traveller"/>
   <bpmn2:itemDefinition id="_mortgageapplicationItem" structureRef="org.acme.travels.MortgageApplication"/>
   <bpmn2:itemDefinition id="_hotelItem" structureRef="org.acme.travels.Hotel"/>
@@ -34,8 +34,8 @@
   <bpmn2:itemDefinition id="__08A42C52-05DB-4339-815B-4FB718EC99C8_NotStartedNotifyInputXItem" structureRef="Object"/>
   <bpmn2:itemDefinition id="__08A42C52-05DB-4339-815B-4FB718EC99C8_NotCompletedNotifyInputXItem" structureRef="Object"/>
   <bpmn2:itemDefinition id="__08A42C52-05DB-4339-815B-4FB718EC99C8_flightInputXItem" structureRef="org.acme.travels.Flight"/>
-  <bpmn2:collaboration id="_33767053-2013-4459-9F2C-D0302B86F1AF" name="Default Collaboration">
-    <bpmn2:participant id="_8774FC07-4AF9-4E66-9ED2-9D85D33319EE" name="Pool Participant" processRef="mortgage"/>
+  <bpmn2:collaboration id="_64D98927-2854-4731-A4E9-6E581AE97013" name="Default Collaboration">
+    <bpmn2:participant id="_A15E3077-C168-426C-AEE0-D61E0CE366AE" name="Pool Participant" processRef="mortgage"/>
   </bpmn2:collaboration>
   <bpmn2:process id="mortgage" drools:packageName="org.acme.travels" drools:version="1.0" drools:adHoc="false" name="mortgage" isExecutable="true" processType="Public">
     <bpmn2:extensionElements>
@@ -175,18 +175,12 @@
         </bpmn2:outputSet>
       </bpmn2:ioSpecification>
       <bpmn2:dataInputAssociation>
+        <bpmn2:sourceRef>mortgageapplication</bpmn2:sourceRef>
         <bpmn2:targetRef>CallActivity_1_mortgageApplicationInputX</bpmn2:targetRef>
-        <bpmn2:assignment>
-          <bpmn2:from xsi:type="bpmn2:tFormalExpression"><![CDATA[mortgageApplication]]></bpmn2:from>
-          <bpmn2:to xsi:type="bpmn2:tFormalExpression"><![CDATA[CallActivity_1_mortgageApplicationInputX]]></bpmn2:to>
-        </bpmn2:assignment>
       </bpmn2:dataInputAssociation>
       <bpmn2:dataOutputAssociation>
         <bpmn2:sourceRef>CallActivity_1_mortgageApplicationOutputX</bpmn2:sourceRef>
-        <bpmn2:assignment>
-          <bpmn2:from xsi:type="bpmn2:tFormalExpression"><![CDATA[CallActivity_1_mortgageApplicationOutputX]]></bpmn2:from>
-          <bpmn2:to xsi:type="bpmn2:tFormalExpression"><![CDATA[mortgageApplication]]></bpmn2:to>
-        </bpmn2:assignment>
+        <bpmn2:targetRef>mortgageapplication</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
     </bpmn2:callActivity>
     <bpmn2:userTask id="UserTask_2" name="Confirm">
@@ -398,7 +392,7 @@
         </bpsim:Scenario>
       </bpsim:BPSimData>
     </bpmn2:extensionElements>
-    <bpmn2:source>_0mbDYA4HED2tvqhmVC3rpQ</bpmn2:source>
-    <bpmn2:target>_0mbDYA4HED2tvqhmVC3rpQ</bpmn2:target>
+    <bpmn2:source>_5ej6MA4LED2pdoZYM4_xlQ</bpmn2:source>
+    <bpmn2:target>_5ej6MA4LED2pdoZYM4_xlQ</bpmn2:target>
   </bpmn2:relationship>
 </bpmn2:definitions>

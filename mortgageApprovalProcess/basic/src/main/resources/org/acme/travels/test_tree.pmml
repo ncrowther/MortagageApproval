@@ -29,20 +29,22 @@
       <True />
       <Node score="BronzeDiscount" id="2">
         <CompoundPredicate booleanOperator="and">
-          <SimplePredicate field="salary" operator="greaterThan" value="25000" />
-          <SimplePredicate field="mortgage" operator="lessOrEqual" value="200000" />
+          <SimplePredicate field="salary" operator="greaterThan" value="10000" />
+          <SimplePredicate field="salary" operator="lessThan" value="80000" />
+          <SimplePredicate field="mortgage" operator="lessThan" value="60000" />
         </CompoundPredicate>
       </Node>
       <Node score="SilverDiscount" id="3">
         <CompoundPredicate booleanOperator="and">
-          <SimplePredicate field="mortgage" operator="greaterThan" value="500000" />
-          <SimplePredicate field="salary" operator="greaterThan" value="50000" />
+          <SimplePredicate field="salary" operator="greaterThan" value="80000" />        
+          <SimplePredicate field="salary" operator="lessThan" value="125000" />
+          <SimplePredicate field="mortgage" operator="greaterThan" value="100000" />
         </CompoundPredicate>
       </Node>      
       <Node score="GoldDiscount" id="4">
         <CompoundPredicate booleanOperator="and">
-          <SimplePredicate field="mortgage" operator="greaterThan" value="1000000" />
-          <SimplePredicate field="salary" operator="greaterThan" value="90000" />
+          <SimplePredicate field="salary" operator="greaterThan" value="125000" />        
+          <SimplePredicate field="mortgage" operator="greaterThan" value="900000" />
         </CompoundPredicate>
       </Node>
       <Node score="nothing" id="5">

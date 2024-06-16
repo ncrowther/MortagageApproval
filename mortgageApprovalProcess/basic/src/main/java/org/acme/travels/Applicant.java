@@ -15,7 +15,7 @@
  */
 package org.acme.travels;
 
-public class Traveller {
+public class Applicant {
 
     private String firstName;
     private String lastName;
@@ -24,11 +24,11 @@ public class Traveller {
     private Address address;
     private String visaApplication;
 
-    public Traveller() {
+    public Applicant() {
 
     }
 
-    public Traveller(String firstName, String lastName, String email, String nationality, Address address) {
+    public Applicant(String firstName, String lastName, String email, String nationality, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -86,7 +86,7 @@ public class Traveller {
 
     @Override
     public String toString() {
-        return "Traveller [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", nationality="
+        return "Applicant [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", nationality="
                 + nationality + ", address=" + address + ", visaApplication=" + visaApplication + "]";
     }
 

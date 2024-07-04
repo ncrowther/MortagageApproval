@@ -9,6 +9,8 @@
       <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
 </head>
 <body>
 <div class="container" role="main">
@@ -16,7 +18,7 @@
         <img src="mortgage.png" alt="Mortgage" width="200" height="200">
         <h1>Mortgage Application</h1>
         <br><br>
-        <p>Powered by IBM BAMOE and Watson ML</p>
+        <p>Powered by IBM BAMOE and ML</p>
        
     </div>
     <div class="page-header">
@@ -36,7 +38,7 @@
                         <th>Property</th>                        
                         <th>Term</th>
                         <th>Approved</th>     
-                        <th>Incentive</th>                   
+                       <!-- <th>Incentive</th>  -->                 
                     </tr>
                     </thead>
                     <tbody id="content">
@@ -97,8 +99,7 @@
                 "<td>" + val.mortgageapplication.salary + "</td>" +
                 "<td>" + val.mortgageapplication.propertyValue + "</td>" +                
                 "<td>" + new Date(val.mortgageapplication.begin).toLocaleDateString() + " - " + new Date(val.mortgageapplication.end).toLocaleDateString() + "</td>" +
-                "<td>" + (val.mortgageapplication.approved ? 'Yes' : 'No') + "</td>" +      
-                "<td>" + val.mortgageapplication.incentive + "</td>" +            
+                "<td>" + (val.mortgageapplication.approved ? 'Yes' : 'No') + "</td>" +                
                         "<td>" +
                         "<button class='btn btn-primary btn-sm' " +
                         "data-toggle='modal' " +
@@ -110,7 +111,6 @@
                         "data-salary='" + val.applicant.salary + "' " +                        
                         "data-loan='" + val.mortgageapplication.loan + "' " +
                         "data-city='" + val.mortgageapplication.city + "' " +
-                        "data-incentive='" + val.mortgageapplication.incentive + "' " +
                         "data-begin='" + new Date(val.mortgageapplication.begin).toLocaleDateString() + "' " +
                         "data-end='" + new Date(val.mortgageapplication.end).toLocaleDateString() + "' " +                     
                         "data-id='" + val.id + "'>" +
@@ -237,7 +237,7 @@
                                     <label for="salary">Salary</label> 
                                     <br>
                                     <select name="salary" id="salary" required>
-                                        <option value=100000>10K</option>
+                                        <option value=10000>10K</option>
                                         <option value=25000>25K</option>  
                                         <option value=50000>50K</option> 
                                         <option value=75000>75K</option>                                                                                                                     
@@ -254,7 +254,7 @@
                                     <label for="loan">Loan</label>
                                     <br>
                                     <select name="loan" id="loan" required>
-                                        <option value=100000>10K</option>
+                                        <option value=10000>10K</option>
                                         <option value=25000>25K</option>  
                                         <option value=50000>50K</option> 
                                         <option value=75000>75K</option>                                                                                                                     
@@ -271,7 +271,7 @@
                                     <label for="propertyvalue">Property Value</label>
                                     <br>
                                     <select name="propertyvalue" id="propertyvalue" required>
-                                        <option value=100000>10K</option>
+                                        <option value=10000>10K</option>
                                         <option value=25000>25K</option>  
                                         <option value=50000>50K</option> 
                                         <option value=75000>75K</option>                                                                                                                     
